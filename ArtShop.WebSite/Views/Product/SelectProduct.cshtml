@@ -1,0 +1,75 @@
+﻿@model ArtShop.Data.Model.Product
+
+
+@{
+    ViewBag.Title = "SelectProduct";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    .checked {
+        color: orange;
+    }
+</style>
+<aside>
+    <img class="product" src="~/Content/Products/@Model.Image">
+</aside>
+<article>
+    <div>
+        <h3>@Model.Title</h3>
+        <h4>@Model.Description</h4>
+
+        <p>
+            @if (@Model.AvgStars == 1)
+            {
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            }
+            else if (@Model.AvgStars == 2)
+            {
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            }
+            else if (@Model.AvgStars == 3)
+            {
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            }
+            else if (@Model.AvgStars == 4)
+            {
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+            }
+            else if (@Model.AvgStars == 5)
+            {
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+            }
+        </p>
+
+        <p>
+            $@Model.Price
+            <input type="button" value="Agregar al carrito" id="addcart" onclick="location.href = '../../Cart/Create?id=@Model.Id&cant=@ViewBag.Quantity.SelectedValue';" />
+            @Html.DropDownList("Quantity", null, htmlAttributes: new { @class = "form-control" })
+        </p>
+        <p>
+            Por <strong>@Model.Artist.FullName</strong>. @Model.Artist.LifeSpan
+        </p>
+        <p>@Model.Artist.Country</p>
+        <p>@Model.Artist.Description</p>
+    </div>
+</article>
